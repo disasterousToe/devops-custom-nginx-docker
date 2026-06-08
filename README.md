@@ -28,3 +28,13 @@ custom-nginx/
 ├── Dockerfile
 ├── index.html
 └── README.md
+
+## Rebuild and Redeploy
+
+When `index.html` is updated, rebuild the image and recreate the container:
+
+```bash
+docker build -t brandon-custom-nginx:v2 .
+docker stop brandon-nginx
+docker rm brandon-nginx
+docker run -d --name brandon-nginx -p 8080:80 brandon-custom-nginx:v2
